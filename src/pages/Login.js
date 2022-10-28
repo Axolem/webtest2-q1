@@ -12,7 +12,6 @@ import {
   IonPage,
   IonText,
 } from "@ionic/react";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 

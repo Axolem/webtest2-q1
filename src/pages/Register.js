@@ -41,6 +41,7 @@ const Register = () => {
   const [location, setLocation] = useState({});
 
   const handleSubmit = async (event) => {
+    printCurrentPosition();
     event.preventDefault();
     const {
       cvv,
@@ -99,20 +100,15 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    const printCurrentPosition = async () => {
-      try {
-        const coordinates = await Geolocation.getCurrentPosition();
-        const { latitude, longitude } = coordinates.coords;
-        setLocation(latitude, longitude);
-      } catch (e) {
-        alert(e);
-      }
-    };
-    return () => {
-      printCurrentPosition();
-    };
-  });
+  const printCurrentPosition = async () => {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      const { latitude, longitude } = coordinates.coords;
+      setLocation({ latitude, longitude });
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   const PersonalDetails = () => {
     return (

@@ -24,6 +24,8 @@ import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
+import { Provider } from "react-redux";
+import store from "./context/store";
 
 /* Theme variables */
 
@@ -42,7 +44,9 @@ function App() {
             path="/home"
             element={
               <ProtectedRoute>
-                <Home />
+                <Provider store={store}>
+                  <Home />
+                </Provider>
               </ProtectedRoute>
             }
           />

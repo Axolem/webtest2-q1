@@ -9,9 +9,11 @@ import {
   IonButton,
   IonCardContent,
 } from "@ionic/react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../context/cartSlice";
 
-const Item = ({ data }) => {
+const Item = ({ data, id }) => {
+  const dispatch = useDispatch();
   return (
     <IonCard style={{ width: "90%", marginTop: "5px", padding: "5px" }}>
       <IonCardContent>
@@ -71,7 +73,17 @@ const Item = ({ data }) => {
               </IonCol>
             </IonRow>
           </IonGrid>
-          <IonButton>
+          <IonButton
+            onClick={() => {
+              const item = {
+                image: data.picture,
+                title: data.name,
+                price: data.incredibleconnection[0],
+                id,
+              };
+              dispatch(addToCart(item));
+            }}
+          >
             <IonText>
               <p>Add to cart</p>
             </IonText>
